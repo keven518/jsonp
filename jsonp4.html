@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>  
+</head>  
+<script type="text/javascript">  
+$(function(){     
+    /*  
+    //简写形式，效果相同  
+    $.getJSON("http://app.example.com/base/json.do?sid=1494&busiId=101&jsonpCallback=?",  
+            function(data){  
+                $("#showcontent").text("Result:"+data.result)  
+    });  
+    */  
+    // $.ajax({  
+    //     type : "get",  
+    //     async:false,  
+    //     url : "http://www.51zovan.com/yershop/index.php?s=/Home/Goods/",  
+    //     dataType : "jsonp",//数据类型为jsonp  
+    //     jsonp: "callback",//服务端用于接收callback调用的function名的参数  
+    //     success : function(data){  
+    //         console.log(data[0].channel.fifth.num);
+    //         $("#showcontent").text("Result:"+data[0].channel.fifth.num)  
+    //     },  
+    //     error:function(){  
+    //         alert('fail');  
+    //     }  
+    // });  
+
+    $.ajax({
+        url : 'http://www.51zovan.com/yershop/index.php?s=/Home/Kv/',
+        dataType : 'jsonp',
+        success : function(data) {
+            console.dir(data);
+        },
+        error : function() {
+            alert('信息读取失败提示!');
+        }
+    });
+
+
+
+});  
+</script>  
+<body>  
+<div id="showcontent">Result:</div>  
+</body>  
+</html>  

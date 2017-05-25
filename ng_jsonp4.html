@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>  
+<script type="text/javascript" src="js/angular-1.3.0.js"></script>  
+</head>  
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.controller('Aaa',['$scope','$http','$timeout',function($scope,$http,$timeout){
+    var timer = null;
+    $scope.data = [];
+    
+    $scope.change = function(name){
+        
+        $timeout.cancel(timer);
+        
+        timer = $timeout(function(){
+        
+            $.ajax({
+                url : 'http://www.51zovan.com/yershop/index.php?s=/Home/Kv/',
+                dataType : 'jsonp',
+                success : function(data) {
+                    $scope.data = data;
+                },
+                error : function() {
+                    alert('信息读取失败提示!');
+                }
+            });
+        
+        },500);
+        
+    };
+    
+    
+    
+    
+    
+}]);
+
+</script>
+<body>  
+<div ng-controller="Aaa">
+    <input type="text" ng-model="name" ng-keyup="change(name)">
+    <input type="button" ng-click="change(name)" value="搜索">
+    <ul>
+        <li ng-repeat="d in data">{{d}}</li>
+    </ul>
+</div>
+</body>  
+</html>  
